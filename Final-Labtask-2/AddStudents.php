@@ -32,7 +32,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (empty($_POST["id"])) {
         $err_id = "*ID is Required";
 		$haserror=true;
-    } else {
+    }
+	else if(!is_numeric($_POST["id"]))
+         {
+            $err_id="Invalid id";
+		$haserror=true;
+         }
+	else {
         $id = htmlspecialchars($_POST["id"]);
     }
 	 if (empty($_POST["dob"])) {
@@ -52,14 +58,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (empty($_POST["credit"])) {
         $err_credit = "*Credit is Required";
         $haserror=true;
-    } else {
+    }
+	else if(!is_numeric($_POST["credit"]))
+         {
+            $err_id="Invalid credit";
+		$haserror=true;
+         }
+	else {
         $credit = htmlspecialchars($_POST["credit"]);
     }
 	if (empty($_POST["did"])) {
         $err_did = "*Dept. ID is Required";
 		$haserror=true;
        
-    } else {
+    }
+	else if(!is_numeric($_POST["did"]))
+         {
+            $err_id="Invalid Dept.id Number";
+		$haserror=true;
+         } else {
         $did = htmlspecialchars($_POST["did"]);
     }
 	if($haserror==false)
@@ -94,20 +111,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </tr>
 <tr>
 <td><span>ID</span> </td>
-<td>:<input type="number" placeholder="ID" name="id"><br><span style="color: red;"><?php echo $err_id; ?></span> </td>
+<td>:<input type="text" placeholder="ID" name="id"><br><span style="color: red;"><?php echo $err_id; ?></span> </td>
 </tr>
 <tr>
 <td><span>DOB</span></td>
 <td>: <input type="text" placeholder="Date of Birth" name="dob"><br><span style="color: red;"><?php echo $err_dob;?></span></td>
 </tr>
 <td><span>Credit</span> </td>
-<td>:<input type="number" placeholder="Credit" name="credit"><br><span style="color: red;"><?php echo $err_credit; ?></span> </td>
+<td>:<input type="text" placeholder="Credit" name="credit"><br><span style="color: red;"><?php echo $err_credit; ?></span> </td>
 </tr>
 <td><span>CGPA</span> </td>
 <td>:<input type="floatval" placeholder="CGPA" name="cgpa"><br><span style="color: red;"><?php echo $err_cgpa; ?></span> </td>
 </tr>
 <td><span>Dept. ID</span> </td>
-<td>:<input type="number" placeholder="Dept. ID" name="did"><br><span style="color: red;"><?php echo $err_did; ?></span> </td>
+<td>:<input type="text" placeholder="Dept. ID" name="did"><br><span style="color: red;"><?php echo $err_did; ?></span> </td>
 </tr>
 <tr>
 <td colspan="2" align="center"><input type="submit" value="Add"><br><span style="color: red;"><?php echo $err; ?></span> </td>
